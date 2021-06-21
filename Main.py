@@ -1,15 +1,17 @@
 import pygame
+
 FPS = 1
 DEAD = WHITE = (255, 255, 255)  # WHITE
 ALIVE = BLACK = (0, 0, 0)  # BLACK
 ABOUT_TO_DIE = (56, 69, 69)  # GRAYISH
-CellSize = 10
-WindowDimensions = (80 * CellSize, 40 * CellSize)
+CellSize = 20
+WindowDimensions = (20 * CellSize, 10 * CellSize)  # (Rows , Columns)
 BoardArr = [[None for i in range(int(WindowDimensions[0] / CellSize))] for j in
             range(int(WindowDimensions[1] / CellSize))]
 Window = None
 
-print(len(BoardArr), ", ", len(BoardArr[0]))
+print("Rows: ", len(BoardArr), ", Columns: ", len(BoardArr[0]))
+print(BoardArr)
 
 
 def StartUpWindow():
@@ -26,12 +28,12 @@ def draw_grid():
         nonlocal Column, Row
         if Row < len(BoardArr):
             if Column < len(BoardArr[0]):
-                BoardArr[Row][Column] = [cell, cellColor]
+                BoardArr[Row][Column] = [cell, cellColor, Row, Column]
                 Column += 1
             else:
                 Row += 1
                 Column = 0
-                BoardArr[Row][Column] = [cell, cellColor]
+                BoardArr[Row][Column] = [cell, cellColor, Row, Column]
                 Column += 1
         else:
             print("Error adding cell to array")
@@ -42,25 +44,21 @@ def draw_grid():
             cellColor = WHITE
             AddCellToArray(cell, cellColor)
             pygame.draw.rect(surface=Window, color=cellColor, rect=cell, width=0)
-
+    print(BoardArr)
 
 def CheckCell(cell):
     # if Alive and has 0/1 neighbors - Dead
     # if Alive and has 4+ neighbors - Dead
     # if Alive and has 2/3 neighbors - Alive
     # if Dead adn has exactly 3 neighbors - Alive
-    NeighborsSum, COLUMN, ROW = 0, 0, 0
-    for column in range(len(BoardArr[0])):
-        for row in range(len(BoardArr)):
-            if BoardArr[row][column] == cell:
-                ROW = row
-                COLUMN = column
-                print(cell)
-                print(BoardArr[row][column])
-                break
+
+    NeighborsSum = 0
+    ROW = cell[2]
+    COLUMN = cell[3]
+
     print(ROW, COLUMN)
-    for column in range(len(BoardArr[0])):
-        for row in range(len(BoardArr)):
+    for row in range(len(BoardArr)):
+        for column in range(len(BoardArr[0])):
             if row == ROW - 1 and (column == COLUMN or column == COLUMN - 1 or column == COLUMN + 1):
                 if BoardArr[row][column][1] == ALIVE:
                     NeighborsSum += 1
@@ -70,7 +68,7 @@ def CheckCell(cell):
             elif row == ROW and (column == COLUMN - 1 or column == COLUMN + 1):
                 if BoardArr[row][column][1] == ALIVE:
                     NeighborsSum += 1
-    print(row, column, NeighborsSum)
+    print("Neighbors Count: ", NeighborsSum)
     if cell[1] == ALIVE and (NeighborsSum == 0 or NeighborsSum == 1):
         ColorCell(cell, DEAD)
     elif cell[1] == ALIVE and (NeighborsSum > 3):
@@ -87,25 +85,21 @@ def ColorCell(cell, color):
 
 
 def play():
-    for row in range(len(BoardArr[0])):
-        for column in range(len(BoardArr)):
-            if BoardArr[column][row][1] == ALIVE:
-                CheckCell(BoardArr[column][row])
+    for row in range(len(BoardArr)):
+        for column in range(len(BoardArr[0])):
+            if BoardArr[row][column][1] == ALIVE:
+                CheckCell(BoardArr[row][column])
+
+
 def start():
-    ColorCell(BoardArr[23][22], ALIVE)
-    ColorCell(BoardArr[23][23], ALIVE)
-    ColorCell(BoardArr[23][24], ALIVE)
-    ColorCell(BoardArr[24][21], ALIVE)
-    ColorCell(BoardArr[24][22], ALIVE)
-    ColorCell(BoardArr[25][22], ALIVE)
-    ColorCell(BoardArr[26][22], ALIVE)
-    ColorCell(BoardArr[25][23], ALIVE)
-    ColorCell(BoardArr[13][13], ALIVE)
-    ColorCell(BoardArr[13][12], ALIVE)
-    ColorCell(BoardArr[12][13], ALIVE)
-    ColorCell(BoardArr[12][14], ALIVE)
-    ColorCell(BoardArr[13][11], ALIVE)
-    ColorCell(BoardArr[15][12], ALIVE)
+    ColorCell(BoardArr[1][8], ALIVE)
+    ColorCell(BoardArr[1][9], ALIVE)
+    ColorCell(BoardArr[1][10], ALIVE)
+    ColorCell(BoardArr[2][7], ALIVE)
+    ColorCell(BoardArr[2][8], ALIVE)
+    ColorCell(BoardArr[2][9], ALIVE)
+
+
 
 def main():
     clock = pygame.time.Clock()
