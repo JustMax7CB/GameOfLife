@@ -1,9 +1,10 @@
 import pygame
+FPS = 1
 DEAD = WHITE = (255, 255, 255)  # WHITE
 ALIVE = BLACK = (0, 0, 0)  # BLACK
 ABOUT_TO_DIE = (56, 69, 69)  # GRAYISH
-CellSize = 20
-WindowDimensions = (40 * CellSize, 20 * CellSize)
+CellSize = 10
+WindowDimensions = (80 * CellSize, 40 * CellSize)
 BoardArr = [[None for i in range(int(WindowDimensions[0] / CellSize))] for j in
             range(int(WindowDimensions[1] / CellSize))]
 Window = None
@@ -43,7 +44,7 @@ def draw_grid():
             pygame.draw.rect(surface=Window, color=cellColor, rect=cell, width=0)
 
 
-def test(cell):
+def CheckCell(cell):
     # if Alive and has 0/1 neighbors - Dead
     # if Alive and has 4+ neighbors - Dead
     # if Alive and has 2/3 neighbors - Alive
@@ -88,30 +89,32 @@ def ColorCell(cell, color):
 def play():
     for row in range(len(BoardArr[0])):
         for column in range(len(BoardArr)):
-            test(BoardArr[column][row])
+            if BoardArr[column][row][1] == ALIVE:
+                CheckCell(BoardArr[column][row])
 def start():
-    ColorCell(BoardArr[1][2], ALIVE)
-    ColorCell(BoardArr[1][3], ALIVE)
-    ColorCell(BoardArr[2][1], ALIVE)
-    ColorCell(BoardArr[3][1], ALIVE)
-    ColorCell(BoardArr[2][4], ALIVE)
-    ColorCell(BoardArr[3][3], ALIVE)
-    ColorCell(BoardArr[4][2], ALIVE)
-    ColorCell(BoardArr[4][3], ALIVE)
-    ColorCell(BoardArr[4][4], ALIVE)
-    ColorCell(BoardArr[5][2], ALIVE)
-    ColorCell(BoardArr[4][1], ALIVE)
-
+    ColorCell(BoardArr[23][22], ALIVE)
+    ColorCell(BoardArr[23][23], ALIVE)
+    ColorCell(BoardArr[23][24], ALIVE)
+    ColorCell(BoardArr[24][21], ALIVE)
+    ColorCell(BoardArr[24][22], ALIVE)
+    ColorCell(BoardArr[25][22], ALIVE)
+    ColorCell(BoardArr[26][22], ALIVE)
+    ColorCell(BoardArr[25][23], ALIVE)
+    ColorCell(BoardArr[13][13], ALIVE)
+    ColorCell(BoardArr[13][12], ALIVE)
+    ColorCell(BoardArr[12][13], ALIVE)
+    ColorCell(BoardArr[12][14], ALIVE)
+    ColorCell(BoardArr[13][11], ALIVE)
+    ColorCell(BoardArr[15][12], ALIVE)
 
 def main():
-    #clock = pygame.time.Clock()
-    pygame.init()
+    clock = pygame.time.Clock()
     StartUpWindow()
+    draw_grid()
+    start()
     run = True
     while run:
-        #clock.tick(FPS)
-        draw_grid()
-        start()
+        clock.tick(FPS)
         play()
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
