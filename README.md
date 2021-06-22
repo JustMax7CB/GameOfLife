@@ -16,3 +16,15 @@ Any dead cell with three live neighbours becomes a live cell.
 All other live cells die in the next generation. Similarly, all other dead cells stay dead.
 
 https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life
+
+You can customize the game yourself!
+
+What you'll need:
+1. Python 3 installed
+2. pyGame module installed
+
+Customizable Variables:
+- FPS of the Game 
+- Cell Size
+- Grid size according to cell size
+- Starting patterns.
