@@ -1,7 +1,7 @@
 Started a project of creating Conway's Game of life in python using PyGame library.
 
 The idea in the game is:
-- There is a grid of cells, which can be colored white(Alive) or empty(Dead).
+- There is a grid of cells, which can be colored Black(Alive) or White(Dead).
 
 At each step in time, the following transitions occur:
 - Any live cell with fewer than two live neighbours dies, as if by underpopulation.
