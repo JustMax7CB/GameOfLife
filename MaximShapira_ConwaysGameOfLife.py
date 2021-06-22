@@ -1,11 +1,11 @@
 import pygame
 
-FPS = 1
+FPS = 60
 DEAD = WHITE = (255, 255, 255)  # WHITE
 ALIVE = BLACK = (0, 0, 0)  # BLACK
 ABOUT_TO_DIE = (56, 69, 69)  # GRAYISH
-CellSize = 20
-WindowDimensions = (20 * CellSize, 10 * CellSize)  # (Rows , Columns)
+CellSize = 10
+WindowDimensions = (50 * CellSize, 30 * CellSize)  # (Rows , Columns)
 BoardArr = [[None for i in range(int(WindowDimensions[0] / CellSize))] for j in  # Initialize an array for the board
             range(int(WindowDimensions[1] / CellSize))]
 Window = None
@@ -59,7 +59,7 @@ def draw_grid():
     for y in range(0, WindowDimensions[1], CellSize):
         for x in range(0, WindowDimensions[0], CellSize):
             cell = pygame.Rect(x, y, CellSize, CellSize)
-            cellColor = WHITE
+            cellColor = DEAD
             AddCellToArray(cell, cellColor)
             pygame.draw.rect(surface=Window, color=cellColor, rect=cell, width=0)
     print(BoardArr)
@@ -98,13 +98,13 @@ def CheckCell(cell):
                     NeighborsSum += 1
     print("Neighbors Count: ", NeighborsSum)
     if cell[1] == ALIVE and (NeighborsSum == 0 or NeighborsSum == 1):  # Alive and has 0/1 neighbors -> Dead
-        ColorCell(cell, DEAD)
+        ruleA.append(cell)
     elif cell[1] == ALIVE and (NeighborsSum > 3):  # Alive and has 4+ neighbors -> Dead
-        ColorCell(cell, DEAD)
+        ruleA.append(cell)
     elif cell[1] == ALIVE and (NeighborsSum == 2 or NeighborsSum == 3):  # Alive and has 2/3 neighbors -> Alive
-        ColorCell(cell, ALIVE)
+        ruleB.append(cell)
     elif cell[1] == DEAD and NeighborsSum == 3:  # if Dead adn has exactly 3 neighbors -> Alive
-        ColorCell(cell, ALIVE)
+        ruleB.append(cell)
 
 
 def ColorCell(cell, color):
@@ -118,29 +118,103 @@ def ColorCell(cell, color):
     cell[1] = color
 
 
+ruleA = []  # Alive and has 0/1 neighbors OR Alive and has 4+ neighbors -> Dead
+ruleB = []  # Alive and has 2/3 neighbors OR Dead and has exactly 3 neighbors -> Alive
+
+
 def play():
+    global ruleA, ruleB
     """
     Function play iterates the cells on the board by rows and checks each cell with the CheckCell function
     """
 
     for row in range(len(BoardArr)):
         for column in range(len(BoardArr[0])):
-            if BoardArr[row][column][1] == ALIVE:
-                CheckCell(BoardArr[row][column])
+            CheckCell(BoardArr[row][column])
+    print("Before: ", ruleA)
+    print("Before: ", ruleB)
+    for cell in ruleA:
+        ColorCell(cell, DEAD)
+    ruleA = []
+    for cell in ruleB:
+        ColorCell(cell, ALIVE)
+    ruleB = []
 
 
 def starter():
     """
     Function to Startup the game by changing the state/color of random chosen cells on the board
     """
+    # #    *
+    # #   ***
+    # #
+    # ColorCell(BoardArr[8][7], ALIVE)
+    # ColorCell(BoardArr[8][8], ALIVE)
+    # ColorCell(BoardArr[8][9], ALIVE)
+    # ColorCell(BoardArr[7][8], ALIVE)
+    #
+    # #      *
+    # #    **
+    # #     *
+    # #
+    #
+    # ColorCell(BoardArr[23][25], ALIVE)
+    # ColorCell(BoardArr[23][26], ALIVE)
+    # ColorCell(BoardArr[24][26], ALIVE)
+    # ColorCell(BoardArr[22][27], ALIVE)
 
-    ColorCell(BoardArr[1][8], ALIVE)
-    ColorCell(BoardArr[1][9], ALIVE)
-    ColorCell(BoardArr[1][10], ALIVE)
-    ColorCell(BoardArr[2][7], ALIVE)
-    ColorCell(BoardArr[2][8], ALIVE)
-    ColorCell(BoardArr[2][9], ALIVE)
+    ColorCell(BoardArr[10][10], ALIVE)
+    ColorCell(BoardArr[11][10], ALIVE)
+    ColorCell(BoardArr[12][10], ALIVE)
+    ColorCell(BoardArr[8][12], ALIVE)
+    ColorCell(BoardArr[8][13], ALIVE)
+    ColorCell(BoardArr[8][14], ALIVE)
+    ColorCell(BoardArr[13][12], ALIVE)
+    ColorCell(BoardArr[13][13], ALIVE)
+    ColorCell(BoardArr[13][14], ALIVE)
+    ColorCell(BoardArr[10][15], ALIVE)
+    ColorCell(BoardArr[11][15], ALIVE)
+    ColorCell(BoardArr[12][15], ALIVE)
 
+    ColorCell(BoardArr[16][10], ALIVE)
+    ColorCell(BoardArr[17][10], ALIVE)
+    ColorCell(BoardArr[18][10], ALIVE)
+    ColorCell(BoardArr[15][12], ALIVE)
+    ColorCell(BoardArr[15][13], ALIVE)
+    ColorCell(BoardArr[15][14], ALIVE)
+    ColorCell(BoardArr[13][12], ALIVE)
+    ColorCell(BoardArr[20][12], ALIVE)
+    ColorCell(BoardArr[20][13], ALIVE)
+    ColorCell(BoardArr[20][14], ALIVE)
+    ColorCell(BoardArr[16][15], ALIVE)
+    ColorCell(BoardArr[17][15], ALIVE)
+    ColorCell(BoardArr[18][15], ALIVE)
+
+    ColorCell(BoardArr[10][17], ALIVE)
+    ColorCell(BoardArr[11][17], ALIVE)
+    ColorCell(BoardArr[12][17], ALIVE)
+    ColorCell(BoardArr[8][18], ALIVE)
+    ColorCell(BoardArr[8][19], ALIVE)
+    ColorCell(BoardArr[8][20], ALIVE)
+    ColorCell(BoardArr[13][18], ALIVE)
+    ColorCell(BoardArr[13][19], ALIVE)
+    ColorCell(BoardArr[13][20], ALIVE)
+    ColorCell(BoardArr[10][22], ALIVE)
+    ColorCell(BoardArr[11][22], ALIVE)
+    ColorCell(BoardArr[12][22], ALIVE)
+
+    ColorCell(BoardArr[16][17], ALIVE)
+    ColorCell(BoardArr[17][17], ALIVE)
+    ColorCell(BoardArr[18][17], ALIVE)
+    ColorCell(BoardArr[15][18], ALIVE)
+    ColorCell(BoardArr[15][19], ALIVE)
+    ColorCell(BoardArr[15][20], ALIVE)
+    ColorCell(BoardArr[20][18], ALIVE)
+    ColorCell(BoardArr[20][19], ALIVE)
+    ColorCell(BoardArr[20][20], ALIVE)
+    ColorCell(BoardArr[16][22], ALIVE)
+    ColorCell(BoardArr[17][22], ALIVE)
+    ColorCell(BoardArr[18][22], ALIVE)
 
 def main():
     clock = pygame.time.Clock()
