@@ -7,7 +7,7 @@ ALIVE = BLACK = (0, 0, 0)  # BLACK
 FPS = 0
 CellSize = 10
 WindowDimensions = (50 * CellSize, 40 * CellSize)  # (Rows , Columns)
-Program = 5
+Program = 4
 ###############################################################
 
 ######################################## Programs: ############################################
@@ -152,203 +152,54 @@ def play():
 
 
 def starter(program):
+    Program1 = [(8, 7), (8, 8), (8, 9), (7, 8)]
+    Program2 = [(23, 25), (23, 26), (24, 26), (22, 27)]
+    Program3 = [(10, 10), (11, 10), (12, 10), (8, 12), (8, 13), (8, 14), (13, 12), (13, 13), (13, 14), (10, 15),
+                (11, 15), (12, 15),
+                (16, 10), (17, 10), (18, 10), (15, 12), (15, 13), (15, 14), (20, 12), (20, 13), (20, 14), (16, 15),
+                (17, 15), (18, 15),
+                (10, 17), (11, 17), (12, 17), (8, 18), (8, 19), (8, 20), (13, 18), (13, 19), (13, 20), (10, 22),
+                (11, 22), (12, 22),
+                (16, 17), (17, 17), (18, 17), (15, 18), (15, 19), (15, 20), (20, 18), (20, 19), (20, 20), (16, 22),
+                (17, 22), (18, 22)]
+    Program4 = [(10, 3), (10, 4), (11, 13), (11, 4),
+                (10, 13), (11, 13), (12, 13), (13, 14), (14, 15), (14, 16), (9, 14), (8, 15), (8, 16), (11, 17),
+                (9, 18), (10, 19), (11, 19), (12, 19), (13, 18), (11, 20),
+                (8, 23), (9, 23), (10, 23), (8, 24), (9, 24), (10, 24), (7, 25), (11, 25),
+                (6, 27), (7, 27),
+                (11, 27), (12, 27),
+                (8, 37), (9, 37), (8, 38), (9, 38)]
+    Program5 = [(6, 22), (7, 22), (8, 22), (9, 23), (6, 23), (6, 24), (6, 25), (6, 26), (7, 27),
+                (19, 22), (20, 22), (21, 22), (18, 23), (21, 23), (21, 24), (21, 25), (21, 26), (20, 27),
+                (10, 25), (10, 26), (11, 27), (12, 28), (13, 29), (14, 29), (15, 28), (16, 27), (17, 26), (17, 25),
+                (15, 30), (12, 30),
+                (10, 30), (10, 31), (11, 32), (12, 32),
+                (17, 30), (17, 31), (16, 32), (15, 32),
+                (10, 33), (9, 33), (10, 34), (9, 34), (8, 34), (8, 35), (7, 35), (7, 36), (9, 36), (9, 37),
+                (8, 37), (10, 37), (9, 38), (8, 38), (10, 38), (8, 39), (9, 39), (11, 35), (12, 34),
+                (17, 33), (18, 33), (17, 34), (18, 34), (19, 34), (19, 35), (20, 35), (20, 36), (18, 36), (18, 37),
+                (17, 37), (19, 37), (18, 38), (17, 38), (19, 38), (18, 39), (19, 39), (16, 35), (15, 34)]
+
+    if program == 1:
+        for x, y in Program1:
+            ColorCell(BoardArr[x][y], ALIVE)
+    elif program == 2:
+        for x, y in Program2:
+            ColorCell(BoardArr[x][y], ALIVE)
+    elif program == 3:
+        for x, y in Program3:
+            ColorCell(BoardArr[x][y], ALIVE)
+    elif program == 4:
+        for x, y in Program4:
+            ColorCell(BoardArr[x][y], ALIVE)
+    elif program == 5:
+        for x, y in Program5:
+            ColorCell(BoardArr[x][y], ALIVE)
+
     """
     Function to Startup the game by changing the state/color of random chosen cells on the board
     *** each program described in the beginning of the file ***
     """
-
-    if program == 1:
-        ColorCell(BoardArr[8][7], ALIVE)
-        ColorCell(BoardArr[8][8], ALIVE)
-        ColorCell(BoardArr[8][9], ALIVE)
-        ColorCell(BoardArr[7][8], ALIVE)
-
-    if program == 2:
-        ColorCell(BoardArr[23][25], ALIVE)
-        ColorCell(BoardArr[23][26], ALIVE)
-        ColorCell(BoardArr[24][26], ALIVE)
-        ColorCell(BoardArr[22][27], ALIVE)
-
-    if program == 3:
-        ColorCell(BoardArr[10][10], ALIVE)
-        ColorCell(BoardArr[11][10], ALIVE)
-        ColorCell(BoardArr[12][10], ALIVE)
-        ColorCell(BoardArr[8][12], ALIVE)
-        ColorCell(BoardArr[8][13], ALIVE)
-        ColorCell(BoardArr[8][14], ALIVE)
-        ColorCell(BoardArr[13][12], ALIVE)
-        ColorCell(BoardArr[13][13], ALIVE)
-        ColorCell(BoardArr[13][14], ALIVE)
-        ColorCell(BoardArr[10][15], ALIVE)
-        ColorCell(BoardArr[11][15], ALIVE)
-        ColorCell(BoardArr[12][15], ALIVE)
-
-        ColorCell(BoardArr[16][10], ALIVE)
-        ColorCell(BoardArr[17][10], ALIVE)
-        ColorCell(BoardArr[18][10], ALIVE)
-        ColorCell(BoardArr[15][12], ALIVE)
-        ColorCell(BoardArr[15][13], ALIVE)
-        ColorCell(BoardArr[15][14], ALIVE)
-        ColorCell(BoardArr[13][12], ALIVE)
-        ColorCell(BoardArr[20][12], ALIVE)
-        ColorCell(BoardArr[20][13], ALIVE)
-        ColorCell(BoardArr[20][14], ALIVE)
-        ColorCell(BoardArr[16][15], ALIVE)
-        ColorCell(BoardArr[17][15], ALIVE)
-        ColorCell(BoardArr[18][15], ALIVE)
-
-        ColorCell(BoardArr[10][17], ALIVE)
-        ColorCell(BoardArr[11][17], ALIVE)
-        ColorCell(BoardArr[12][17], ALIVE)
-        ColorCell(BoardArr[8][18], ALIVE)
-        ColorCell(BoardArr[8][19], ALIVE)
-        ColorCell(BoardArr[8][20], ALIVE)
-        ColorCell(BoardArr[13][18], ALIVE)
-        ColorCell(BoardArr[13][19], ALIVE)
-        ColorCell(BoardArr[13][20], ALIVE)
-        ColorCell(BoardArr[10][22], ALIVE)
-        ColorCell(BoardArr[11][22], ALIVE)
-        ColorCell(BoardArr[12][22], ALIVE)
-
-        ColorCell(BoardArr[16][17], ALIVE)
-        ColorCell(BoardArr[17][17], ALIVE)
-        ColorCell(BoardArr[18][17], ALIVE)
-        ColorCell(BoardArr[15][18], ALIVE)
-        ColorCell(BoardArr[15][19], ALIVE)
-        ColorCell(BoardArr[15][20], ALIVE)
-        ColorCell(BoardArr[20][18], ALIVE)
-        ColorCell(BoardArr[20][19], ALIVE)
-        ColorCell(BoardArr[20][20], ALIVE)
-        ColorCell(BoardArr[16][22], ALIVE)
-        ColorCell(BoardArr[17][22], ALIVE)
-        ColorCell(BoardArr[18][22], ALIVE)
-
-    if program == 4:
-        ColorCell(BoardArr[10][3], ALIVE)
-        ColorCell(BoardArr[10][4], ALIVE)
-        ColorCell(BoardArr[11][3], ALIVE)
-        ColorCell(BoardArr[11][4], ALIVE)
-
-        ColorCell(BoardArr[10][13], ALIVE)
-        ColorCell(BoardArr[11][13], ALIVE)
-        ColorCell(BoardArr[12][13], ALIVE)
-        ColorCell(BoardArr[13][14], ALIVE)
-        ColorCell(BoardArr[14][15], ALIVE)
-        ColorCell(BoardArr[14][16], ALIVE)
-        ColorCell(BoardArr[9][14], ALIVE)
-        ColorCell(BoardArr[8][15], ALIVE)
-        ColorCell(BoardArr[8][16], ALIVE)
-        ColorCell(BoardArr[11][17], ALIVE)
-        ColorCell(BoardArr[9][18], ALIVE)
-        ColorCell(BoardArr[10][19], ALIVE)
-        ColorCell(BoardArr[11][19], ALIVE)
-        ColorCell(BoardArr[12][19], ALIVE)
-        ColorCell(BoardArr[13][18], ALIVE)
-        ColorCell(BoardArr[11][20], ALIVE)
-
-        ColorCell(BoardArr[8][23], ALIVE)
-        ColorCell(BoardArr[9][23], ALIVE)
-        ColorCell(BoardArr[10][23], ALIVE)
-        ColorCell(BoardArr[8][24], ALIVE)
-        ColorCell(BoardArr[9][24], ALIVE)
-        ColorCell(BoardArr[10][24], ALIVE)
-        ColorCell(BoardArr[7][25], ALIVE)
-        ColorCell(BoardArr[11][25], ALIVE)
-
-        ColorCell(BoardArr[6][27], ALIVE)
-        ColorCell(BoardArr[7][27], ALIVE)
-
-        ColorCell(BoardArr[11][27], ALIVE)
-        ColorCell(BoardArr[12][27], ALIVE)
-
-        ColorCell(BoardArr[8][37], ALIVE)
-        ColorCell(BoardArr[9][37], ALIVE)
-        ColorCell(BoardArr[8][38], ALIVE)
-        ColorCell(BoardArr[9][38], ALIVE)
-
-    if program == 5:
-        ColorCell(BoardArr[6][22], ALIVE)
-        ColorCell(BoardArr[7][22], ALIVE)
-        ColorCell(BoardArr[8][22], ALIVE)
-        ColorCell(BoardArr[9][23], ALIVE)
-        ColorCell(BoardArr[6][23], ALIVE)
-        ColorCell(BoardArr[6][24], ALIVE)
-        ColorCell(BoardArr[6][25], ALIVE)
-        ColorCell(BoardArr[6][26], ALIVE)
-        ColorCell(BoardArr[7][27], ALIVE)
-
-        ColorCell(BoardArr[19][22], ALIVE)
-        ColorCell(BoardArr[20][22], ALIVE)
-        ColorCell(BoardArr[21][22], ALIVE)
-        ColorCell(BoardArr[18][23], ALIVE)
-        ColorCell(BoardArr[21][23], ALIVE)
-        ColorCell(BoardArr[21][24], ALIVE)
-        ColorCell(BoardArr[21][25], ALIVE)
-        ColorCell(BoardArr[21][26], ALIVE)
-        ColorCell(BoardArr[20][27], ALIVE)
-
-        ColorCell(BoardArr[10][25], ALIVE)
-        ColorCell(BoardArr[10][26], ALIVE)
-        ColorCell(BoardArr[11][27], ALIVE)
-        ColorCell(BoardArr[12][28], ALIVE)
-        ColorCell(BoardArr[13][29], ALIVE)
-        ColorCell(BoardArr[14][29], ALIVE)
-        ColorCell(BoardArr[15][28], ALIVE)
-        ColorCell(BoardArr[16][27], ALIVE)
-        ColorCell(BoardArr[17][26], ALIVE)
-        ColorCell(BoardArr[17][25], ALIVE)
-        ColorCell(BoardArr[15][30], ALIVE)
-        ColorCell(BoardArr[12][30], ALIVE)
-
-        ColorCell(BoardArr[10][30], ALIVE)
-        ColorCell(BoardArr[10][31], ALIVE)
-        ColorCell(BoardArr[11][32], ALIVE)
-        ColorCell(BoardArr[12][32], ALIVE)
-
-        ColorCell(BoardArr[17][30], ALIVE)
-        ColorCell(BoardArr[17][31], ALIVE)
-        ColorCell(BoardArr[16][32], ALIVE)
-        ColorCell(BoardArr[15][32], ALIVE)
-
-        ColorCell(BoardArr[10][33], ALIVE)
-        ColorCell(BoardArr[9][33], ALIVE)
-        ColorCell(BoardArr[10][34], ALIVE)
-        ColorCell(BoardArr[9][34], ALIVE)
-        ColorCell(BoardArr[8][34], ALIVE)
-        ColorCell(BoardArr[8][35], ALIVE)
-        ColorCell(BoardArr[7][35], ALIVE)
-        ColorCell(BoardArr[7][36], ALIVE)
-        ColorCell(BoardArr[9][36], ALIVE)
-        ColorCell(BoardArr[9][37], ALIVE)
-        ColorCell(BoardArr[8][37], ALIVE)
-        ColorCell(BoardArr[10][37], ALIVE)
-        ColorCell(BoardArr[9][38], ALIVE)
-        ColorCell(BoardArr[8][38], ALIVE)
-        ColorCell(BoardArr[10][38], ALIVE)
-        ColorCell(BoardArr[8][39], ALIVE)
-        ColorCell(BoardArr[9][39], ALIVE)
-        ColorCell(BoardArr[11][35], ALIVE)
-        ColorCell(BoardArr[12][34], ALIVE)
-
-        ColorCell(BoardArr[17][33], ALIVE)
-        ColorCell(BoardArr[18][33], ALIVE)
-        ColorCell(BoardArr[17][34], ALIVE)
-        ColorCell(BoardArr[18][34], ALIVE)
-        ColorCell(BoardArr[19][34], ALIVE)
-        ColorCell(BoardArr[19][35], ALIVE)
-        ColorCell(BoardArr[20][35], ALIVE)
-        ColorCell(BoardArr[20][36], ALIVE)
-        ColorCell(BoardArr[18][36], ALIVE)
-        ColorCell(BoardArr[18][37], ALIVE)
-        ColorCell(BoardArr[17][37], ALIVE)
-        ColorCell(BoardArr[19][37], ALIVE)
-        ColorCell(BoardArr[18][38], ALIVE)
-        ColorCell(BoardArr[17][38], ALIVE)
-        ColorCell(BoardArr[19][38], ALIVE)
-        ColorCell(BoardArr[18][39], ALIVE)
-        ColorCell(BoardArr[19][39], ALIVE)
-        ColorCell(BoardArr[16][35], ALIVE)
-        ColorCell(BoardArr[15][34], ALIVE)
 
 
 def main():
