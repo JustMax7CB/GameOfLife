@@ -23,7 +23,7 @@ What you'll need:
 1. Python 3 installed
 2. pyGame module installed
     - if not installed you can do it by this commands:
-    1. Open cmd by pressing CTRL + R or opening the start menu bar, and typing cmd and pressing Enter.
+    1. Open cmd by pressing Windows + R or opening the start menu bar, and typing cmd and pressing Enter.
     2. type in cmd console one of the following (the pretty much all the same)
        - "pip install pygame"
        - "python pip install pygame"
