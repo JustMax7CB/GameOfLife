@@ -24,11 +24,8 @@ What you'll need:
 2. pyGame module installed
     - if not installed you can do it by this commands:
     1. Open cmd by pressing Windows + R or opening the start menu bar, and typing cmd and pressing Enter.
-    2. type in cmd console one of the following (the pretty much all the same)
-       - "pip install pygame"
-       - "python pip install pygame"
-       - "python3 pip intall pygame"
-
+    2. type in cmd console "pip install pygame" and press enter
+ 
 Customizable Variables:
 - FPS of the Game 
 - Cell Size
