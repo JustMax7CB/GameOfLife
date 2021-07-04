@@ -1,5 +1,4 @@
 import pygame
-
 DEAD = WHITE = (255, 255, 255)  # WHITE
 ALIVE = BLACK = (0, 0, 0)  # BLACK
 
